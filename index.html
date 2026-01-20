@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sanatan</title>
+  <meta name="description" content="Sanatan: Ramayana, Mahabharata, Vedas. Watch curated YouTube playlists on a Hindu themed website." />
+  <style>
+    :root{
+      --bg1:#120a02;
+      --bg2:#2a1204;
+      --card:#1a0f08cc;
+      --text:#fff5e6;
+      --muted:#ffd9b0;
+      --accent:#ffb14a;
+      --accent2:#ff6a00;
+      --border:#ffffff22;
+      --shadow: 0 18px 50px #00000066;
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, #ff7a181f 0%, transparent 55%),
+        radial-gradient(900px 600px at 85% 15%, #ffcc6614 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    .mandala{
+      position:fixed;
+      inset:-40vh -20vw;
+      pointer-events:none;
+      opacity:0.14;
+      filter: blur(0.2px);
+      background:
+        radial-gradient(circle at center, transparent 0 38%, #ffffff18 39% 40%, transparent 41%),
+        radial-gradient(circle at center, transparent 0 18%, #ffffff14 19% 20%, transparent 21%),
+        repeating-conic-gradient(from 0deg, #ffffff10 0 2deg, transparent 2deg 10deg);
+      transform: rotate(8deg);
+      mask-image: radial-gradient(circle at center, #000 0 40%, transparent 70%);
+    }
+
+    a{ color:inherit; }
+
+    .wrap{
+      width:min(1100px, 92vw);
+      margin:0 auto;
+      padding:32px 0 80px;
+    }
+
+    header{
+      padding:36px 0 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .om{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background: linear-gradient(135deg, #ffb14a, #ff6a00);
+      box-shadow: var(--shadow);
+      border:1px solid #ffffff30;
+      flex:0 0 auto;
+    }
+
+    .om span{
+      font-size:28px;
+      line-height:1;
+      color:#1b0c02;
+      font-weight:900;
+    }
+
+    h1{
+      margin:0;
+      font-size:42px;
+      letter-spacing:0.4px;
+    }
+
+    .tagline{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:16px;
+      max-width: 70ch;
+    }
+
+    .hero{
+      margin-top:18px;
+      padding:22px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #ffffff0d, #ffffff07);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(800px 240px at 10% 0%, #ffb14a25 0%, transparent 65%),
+        radial-gradient(700px 260px at 90% 10%, #ff6a0020 0%, transparent 60%);
+      pointer-events:none;
+    }
+
+    .heroInner{
+      position:relative;
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:12px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid #ffffff2a;
+      background:#00000020;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid #ffffff30;
+      background: linear-gradient(135deg, #ffb14a, #ff6a00);
+      color:#1b0c02;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow: 0 14px 40px #ff6a0020;
+    }
+
+    .btn.secondary{
+      background:#00000020;
+      color:var(--text);
+      font-weight:700;
+    }
+
+    .section{
+      margin-top:34px;
+      padding-top:10px;
+    }
+
+    .sectionHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:0.2px;
+    }
+
+    .sectionNote{
+      color:var(--muted);
+      font-size:13px;
+      max-width: 70ch;
+      margin:0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+
+    .card{
+      grid-column: span 6;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    @media (max-width: 860px){
+      .card{ grid-column: span 12; }
+      h1{ font-size:36px; }
+    }
+
+    .cardTop{
+      padding:14px 14px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .cardTitle{
+      margin:0;
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:0.1px;
+    }
+
+    .cardMeta{
+      margin:6px 0 0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .cardLink{
+      flex:0 0 auto;
+      font-size:12px;
+      color:var(--muted);
+      text-decoration:none;
+      border:1px solid #ffffff24;
+      padding:8px 10px;
+      border-radius:999px;
+      background:#00000022;
+    }
+
+    .player{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      background:#000;
+    }
+
+    .player iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    footer{
+      margin-top:44px;
+      color:var(--muted);
+      font-size:13px;
+      border-top:1px solid #ffffff1a;
+      padding-top:18px;
+    }
+
+    .small{
+      font-size:12px;
+      opacity:0.95;
+      margin-top:8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mandala"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="om" aria-hidden="true"><span>ॐ</span></div>
+        <div>
+          <h1>Sanatan</h1>
+          <p class="tagline">
+            A simple Hindu themed streaming page with curated YouTube playlists for Ramayana, Mahabharata, and the Vedas.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero">
+        <div class="heroInner">
+          <div>
+            <div class="pill">Scroll to explore sacred stories, dharma, and mantra</div>
+            <div class="ctaRow">
+              <a class="btn" href="#ramayana">Start with Ramayana</a>
+              <a class="btn secondary" href="#mahabharata">Go to Mahabharata</a>
+              <a class="btn secondary" href="#vedas">Go to Vedas</a>
+            </div>
+            <p class="small">
+              Note: Some playlists may not allow embedding depending on the channel settings. If an embed does not load, use the Open link on the card.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="content"></main>
+
+    <footer>
+      Built with GitHub Pages + YouTube embeds. Website name: Sanatan.
+      <div class="small">If you want, I can also add a navbar, search, and a playlist only mode for faster loading.</div>
+    </footer>
+  </div>
+
+  <script>
+    const sections = [
+      {
+        id: "ramayana",
+        title: "Ramayana",
+        note: "Bhakti, maryada, seva, and the ideals of Rama. A mix of episodes and meaning focused talks.",
+        items: [
+          {
+            type: "playlist",
+            title: "Ramanand Sagar Ramayan all episodes (Tilak)",
+            list: "PLFPJRCFRDARSZofcQcV6m7Pu2EAL8_1dv",
+            url: "https://www.youtube.com/playlist?list=PLFPJRCFRDARSZofcQcV6m7Pu2EAL8_1dv",
+            meta: "Playlist"
+          },
+          {
+            type: "video",
+            title: "Ramayan EP 1 Raja Dashrath, Putreshti, Ram janm",
+            video: "vIh99bkSc_w",
+            url: "https://www.youtube.com/watch?v=vIh99bkSc_w",
+            meta: "Episode"
+          },
+          {
+            type: "video",
+            title: "Sampurna Ramayan part 1 long video",
+            video: "6El8Ia4fYDc",
+            url: "https://www.youtube.com/watch?v=6El8Ia4fYDc",
+            meta: "Long video"
+          },
+          {
+            type: "playlist",
+            title: "Ramayan full episodes (Dangal TV)",
+            list: "PLYxF_A4Kfsmk7VTgTtfJi5_IaEzSmK_or",
+            url: "https://www.youtube.com/playlist?list=PLYxF_A4Kfsmk7VTgTtfJi5_IaEzSmK_or",
+            meta: "Playlist"
+          },
+          {
+            type: "video",
+            title: "Vedantic Symbolism of Ramayana (Chinmaya)",
+            video: "9TL5tZ27tQA",
+            url: "https://www.youtube.com/watch?v=9TL5tZ27tQA",
+            meta: "Discourse"
+          }
+        ]
+      },
+
+      {
+        id: "mahabharata",
+        title: "Mahabharata",
+        note: "Dharma in complex situations, the Kurukshetra lesson, and the human side of epic choices.",
+        items: [
+          {
+            type: "playlist",
+            title: "B R Chopra Mahabharat all episodes with English subtitles",
+            list: "PLa6CHPhFNfadNcnVZRXa6csHL5sFdkwmV",
+            url: "https://www.youtube.com/playlist?list=PLa6CHPhFNfadNcnVZRXa6csHL5sFdkwmV",
+            meta: "Playlist"
+          },
+          {
+            type: "video",
+            title: "Mahabharat episodes 1 to 3 (Pen Bhakti)",
+            video: "TltC-AllzGY",
+            url: "https://www.youtube.com/watch?v=TltC-AllzGY",
+            meta: "Episodes"
+          },
+          {
+            type: "video",
+            title: "Mahabharat episodes 79 to 81 (Pen Bhakti)",
+            video: "4x3FEkDwX5M",
+            url: "https://www.youtube.com/watch?v=4x3FEkDwX5M",
+            meta: "Episodes"
+          },
+          {
+            type: "playlist",
+            title: "Stories from the Mahabharata discourses (Chinmaya Mission Chicago)",
+            list: "PL5PnJl8Q0XkwAH2nb6KjXQ1I44DCt96OJ",
+            url: "https://www.youtube.com/playlist?list=PL5PnJl8Q0XkwAH2nb6KjXQ1I44DCt96OJ",
+            meta: "Playlist"
+          },
+          {
+            type: "playlist",
+            title: "Mahabharata best scenes and full episodes playlist",
+            list: "PLkfjSqPStjuxRPm4kvkRxGUGx7MbYwRE3",
+            url: "https://www.youtube.com/playlist?list=PLkfjSqPStjuxRPm4kvkRxGUGx7MbYwRE3",
+            meta: "Playlist"
+          }
+        ]
+      },
+
+      {
+        id: "vedas",
+        title: "Vedas",
+        note: "Chanting, pronunciation, and overview material to build context before deeper study.",
+        items: [
+          {
+            type: "playlist",
+            title: "Rig Veda Vol 1 to 54",
+            list: "PLsVY2zzTFgG8tzU0ToA_l8m78AoUSp9_d",
+            url: "https://www.youtube.com/playlist?list=PLsVY2zzTFgG8tzU0ToA_l8m78AoUSp9_d",
+            meta: "Playlist"
+          },
+          {
+            type: "video",
+            title: "Learning Vedas, Upavedas and Vedangas overview",
+            video: "QIAfZZGD3ZU",
+            url: "https://www.youtube.com/watch?v=QIAfZZGD3ZU",
+            meta: "Overview"
+          },
+          {
+            type: "playlist",
+            title: "RIG VEDA CHANTING",
+            list: "PLs1C65TGfuW38haMZQVZGMO5yxl9vzlre",
+            url: "https://www.youtube.com/playlist?list=PLs1C65TGfuW38haMZQVZGMO5yxl9vzlre",
+            meta: "Playlist"
+          },
+          {
+            type: "playlist",
+            title: "Learn Vedas (chanting and pronunciation)",
+            list: "PLIeP9vZsuEsbq7Y1rAOvKo5VZ4Rzi-JUU",
+            url: "https://www.youtube.com/playlist?list=PLIeP9vZsuEsbq7Y1rAOvKo5VZ4Rzi-JUU",
+            meta: "Playlist"
+          },
+          {
+            type: "playlist",
+            title: "Bhagavad Gita, Vedas and Upanishads chants",
+            list: "PL47B52713F8383695",
+            url: "https://www.youtube.com/playlist?list=PL47B52713F8383695",
+            meta: "Playlist"
+          }
+        ]
+      }
+    ];
+
+    function makeEmbed(item){
+      if(item.type === "playlist"){
+        return `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(item.list)}`;
+      }
+      return `https://www.youtube.com/embed/${encodeURIComponent(item.video)}`;
+    }
+
+    function render(){
+      const root = document.getElementById("content");
+      root.innerHTML = sections.map(sec => {
+        const cards = sec.items.map(it => {
+          const src = makeEmbed(it);
+          return `
+            <article class="card">
+              <div class="cardTop">
+                <div>
+                  <h3 class="cardTitle">${it.title}</h3>
+                  <div class="cardMeta">${it.meta}</div>
+                </div>
+                <a class="cardLink" href="${it.url}" target="_blank" rel="noreferrer">Open</a>
+              </div>
+              <div class="player">
+                <iframe
+                  src="${src}"
+                  title="${it.title}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        return `
+          <section class="section" id="${sec.id}">
+            <div class="sectionHeader">
+              <div>
+                <h2>${sec.title}</h2>
+                <p class="sectionNote">${sec.note}</p>
+              </div>
+            </div>
+            <div class="grid">${cards}</div>
+          </section>
+        `;
+      }).join("");
+    }
+
+    render();
+  </script>
+</body>
+</html>
